@@ -27,7 +27,6 @@ func divide(multiplier, divisor int) (int, int, error) {
 
 func divide(multiplier, divisor int) (quotient, remainder int, err error) {
 	if divisor == 0 {
-
 		err = errors.New("divisor cannot be 0")
 		return
 	}
