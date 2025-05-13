@@ -168,3 +168,22 @@ GOOS=windows GOARCH=amd64 go build [filename.go]
     - Pass functions as arguments
     - Return functions as return values
 - Deferred functions
+
+## Collection Types
+### Array
+- Fixed sized typed collection
+
+### Slice
+- Varying sized typed collection
+- append()
+- len()
+- cap()
+    - overall memory allocated for the slice
+- make()
+    - used to preallocate the memory when the slice is created
+![image](./images/slices.png)
+
+### Map
+- Typed collection of key/value pairs
+- Has to be initialized with make() 
+- delete()
