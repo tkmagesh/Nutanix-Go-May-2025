@@ -157,3 +157,14 @@ GOOS=windows GOARCH=amd64 go build [filename.go]
 - if else
 - switch case
 - for
+
+## Functions
+- Can return more than 1 result
+- Named results
+- Variadic functions
+- Anonymous functions
+- Higher Order Functions (functions as data)
+    - Assign functions as values to variables
+    - Pass functions as arguments
+    - Return functions as return values
+- Deferred functions
