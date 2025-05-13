@@ -20,4 +20,5 @@ func main() {
 	no2Ptr := &no
 	*no2Ptr += 10
 	fmt.Printf("no : %d, no2Ptr : %d\n", no, *no2Ptr)
+
 }
