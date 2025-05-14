@@ -246,3 +246,43 @@ go build -o [binary-name] .
 - Accessibility is determined by the naming convention
     - Public - the entity name must start with **uppercase**
     - Private - the entity name must start with **lowercase**
+### Using Open Source
+#### Repo
+- https://pkg.go.dev
+- https://github.com/avelino/awesome-go
+
+#### Installation
+
+
+
+```shell
+# Execute the command in the go.mod folder so that the go.mod file can be updated
+go get <module-name>
+# ex
+go get github.com/fatih/color
+```
+[downloaded in the **GOPATH/pkg** folder]
+#### Update references in the go.mod file 
+```shell
+go mod tidy
+```
+
+#### To download the dependencies referenced in the `go.mod` file
+```shell
+go mod download
+```
+
+#### To localize the dependencies 
+```shell
+go mod vendor
+```
+
+#### Other useful module commands
+```shell
+go mod graph
+go mod why <module-name>
+go list -m all
+```
+
+#### Go module command reference
+- https://go.dev/ref/mod
