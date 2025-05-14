@@ -208,3 +208,41 @@ GOOS=windows GOARCH=amd64 go build [filename.go]
 - The "recover()" function can be used to recover from a panic
 - The "recover()" function returns the error that resulted in the panic
 - Apt to use the "recover()" function in "deferred" functions
+
+## Modules & Packages
+### Module
+- Any code that has to be versioned and deployed together
+- A module is typically a folder with "go.mod" file
+- **go.mod** file (manifest file) contains:
+    - the name of the module
+        - should include the complete repo path
+    - the go version targetted
+    - references to other dependencies
+
+
+#### Create a `go.mod` file
+```shell
+go mod init <module_name>
+```
+- by convention, the module name should include the repo path (not mandatory)
+
+#### Compile & Execute a module
+```shell
+go run .
+```
+
+#### Compile a module
+```shell
+go build .
+# OR
+go build -o [binary-name] .
+```
+
+### Package
+- internal code organization of a module
+- typically folders
+- can also be nested
+- All the code in a package (across files) are considered to be belonging to the "package"
+- Accessibility is determined by the naming convention
+    - Public - the entity name must start with **uppercase**
+    - Private - the entity name must start with **lowercase**
