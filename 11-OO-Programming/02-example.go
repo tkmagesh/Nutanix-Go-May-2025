@@ -27,8 +27,14 @@ func main() {
 	fmt.Println(Format(p))
 
 	fmt.Println("Before applying discount :", Format(p))
-	ApplyDiscount(/* ??? */) // 10%
+	ApplyDiscount(&p, 10) // 10%
 	fmt.Println("After applying discount :", Format(p))
+
+	p1 := Product{101, "Pencil", 5}
+	p2 := Product{101, "Pencil", 5}
+	fmt.Printf("&p1 = %p\n", &p1)
+	fmt.Printf("&p2 = %p\n", &p2)
+	fmt.Println(p1 == p2)
 }
 
 func Format(p Product) string {
@@ -36,6 +42,6 @@ func Format(p Product) string {
 }
 
 // write a function that applies the given discount (percentage) to the given product
-func ApplyDiscount(/* product */, /* discountPercentage */) /* do not return */ {
-	/* logic to apply the discount */
+func ApplyDiscount(p *Product, discountPercentage float64) /* do not return */ {
+	p.cost = p.cost * ((100 - discountPercentage) / 100)
 }
