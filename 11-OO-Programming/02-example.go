@@ -35,6 +35,9 @@ func main() {
 	fmt.Printf("&p1 = %p\n", &p1)
 	fmt.Printf("&p2 = %p\n", &p2)
 	fmt.Println(p1 == p2)
+
+	// var x = &Product{}
+	// var x = new(Product)
 }
 
 func Format(p Product) string {
