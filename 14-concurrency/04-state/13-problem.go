@@ -1,5 +1,5 @@
 /*
-Execute the logic for finding & printing prime numbers concurrently
+Refactor the following so that the "printing of the prime numbers" happen in the main function
 */
 
 package main
