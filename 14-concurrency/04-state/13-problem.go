@@ -9,6 +9,9 @@ import (
 	"sync"
 )
 
+var primes []int
+var mutex sync.Mutex
+
 func main() {
 	wg := &sync.WaitGroup{}
 	wg.Add(1)
@@ -20,6 +23,9 @@ func main() {
 	wg.Add(1)
 	go generatePrimes(76, 100, wg)
 	wg.Wait()
+	for _, primeNo := range primes {
+		fmt.Printf("Prime No : %d\n", primeNo)
+	}
 	fmt.Println("Done!")
 }
 
@@ -32,7 +38,11 @@ LOOP:
 				continue LOOP
 			}
 		}
-		fmt.Println("Prime No :", no)
+		mutex.Lock()
+		{
+			primes = append(primes, no)
+		}
+		mutex.Unlock()
 	}
 
 }

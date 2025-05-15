@@ -287,3 +287,60 @@ go list -m all
 #### Go module command reference
 - https://go.dev/ref/mod
 
+## Concurrency
+### Concurrent Design
+- The application is designed in such a way that it has more than one execution path
+### Concurrency in Go
+- Independent Execution path is represented as a "goroutine" 
+- goroutines are cheap (2 KB)
+- Application build is embedded with a "scheduler"
+- Builtin scheduler schedules the goroutines through the OS threads
+- Scheduler follows "cooperative multitasking"
+
+## Cooperative Multitasking
+![image](./images/cooperative-multitasking.png)
+
+## Pre-emptive Multitasking
+![image](./images/preemptive-multitasking.png)
+
+## Concurrency vs Parallelism
+![image](./images/concurrency-vs-parallelism.png)
+
+## Go Concurrency Model
+![image](./images/go-concurrency.png)
+
+## Threads Vs Goroutines
+![image](./images/threads-vs-goroutines.png)
+
+## Goroutine synchronization using `WaitGroup`
+- `WaitGroup` is a semaphore based counter
+- Has the ability to block the execution of a function until the counter becomes `0`
+
+## Data Race
+### To detect data race
+```shell
+go run -race <filename.go | .>
+```
+```shell
+go build -race <filename.go | . >
+```
+
+## Communication between goroutines
+### Channel
+- datatype built to enable communication between goroutines
+#### Declaration
+```go
+var ch chan int
+```
+#### Initialization
+```go
+ch = make(chan int)
+```
+#### Send Operation
+```go
+ch <- 100
+```
+#### Receive Operation
+```go
+data := <- ch
+```
