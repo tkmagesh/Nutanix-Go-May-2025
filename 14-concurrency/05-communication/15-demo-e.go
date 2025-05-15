@@ -4,6 +4,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 var result int
@@ -17,9 +18,10 @@ func main() {
 }
 
 // producer
-func add(x, y int) chan int {
+func add(x, y int) <-chan int {
 	ch := make(chan int)
 	go func() {
+		time.Sleep(500 * time.Millisecond)
 		result := x + y
 		ch <- result
 	}()
