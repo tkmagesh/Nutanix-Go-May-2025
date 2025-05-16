@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "fmt"
 
 func main() {
 	/*
@@ -29,13 +26,15 @@ func main() {
 		fmt.Println(data)
 	*/
 
-	ch := make(chan int)
-	go func() {
-		data := <-ch
-		time.Sleep(500 * time.Millisecond)
-		fmt.Println(data)
-	}()
-	ch <- 100
+	/*
+		ch := make(chan int)
+		go func() {
+			data := <-ch
+			time.Sleep(500 * time.Millisecond)
+			fmt.Println(data)
+		}()
+		ch <- 100
+	*/
 
 	/*
 		ch := make(chan int)
@@ -61,4 +60,16 @@ func main() {
 		ch <- 100
 		<-doneCh
 	*/
+
+	ch := make(chan int)
+	doneCh := make(chan struct{})
+	go func() {
+		data := <-ch
+		fmt.Println(data)
+		// doneCh <- struct{}{} //unblock the receive operation
+		close(doneCh) //another way of unblocking the receive operation
+	}()
+	ch <- 100
+	<-doneCh
+
 }
