@@ -12,19 +12,25 @@ import (
 
 func main() {
 	wg := &sync.WaitGroup{}
+	stopCh := make(chan struct{})
+	fmt.Println("Hit ENTER to stop!")
+	go func() {
+		fmt.Scanln()
+		close(stopCh)
+	}()
 	wg.Add(1)
-	go genNos(wg)
+	go genNos(wg, stopCh)
 	wg.Wait()
+	fmt.Println("Done!")
 }
 
 // maintainable
-func genNos(wg *sync.WaitGroup) {
+func genNos(wg *sync.WaitGroup, stopCh <-chan struct{}) {
 	defer wg.Done()
-	timeoutCh := time.After(10 * time.Second)
 LOOP:
 	for i := 1; ; i++ {
 		select {
-		case <-timeoutCh:
+		case <-stopCh:
 			break LOOP
 		default:
 			time.Sleep(500 * time.Millisecond)
@@ -33,12 +39,3 @@ LOOP:
 	}
 	fmt.Println("[genNos] stopped")
 }
-
-/* func timeout(d time.Duration) <-chan time.Time {
-	timeoutCh := make(chan time.Time)
-	go func() {
-		time.Sleep(d)
-		timeoutCh <- time.Now()
-	}()
-	return timeoutCh
-} */
