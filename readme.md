@@ -370,3 +370,8 @@ data := <- ch
             - returns a context
             - non-cancellable
             - used for sharing data across context hierarchies (and thereby hierarchies of goroutines)
+
+## Http Services
+```shell
+curl http://localhost:8080/products --header "Content-Type:application/json" --request POST --data '{"id":200,"name":"Stylus", "cost":1000}' -v
+```
